@@ -13,7 +13,7 @@ const user = {
 
     Thông tin sản phẩm:
     Tên sản phẩm: ${user.product}
-    Giá: ${user.price}
+    Giá: ${user.price.toLocaleString()} VNĐ
     Ngày đặt hàng: ${user.orderDate}
 
     Hàng sẽ được giao đến bạn trong thời gian sớm nhất
