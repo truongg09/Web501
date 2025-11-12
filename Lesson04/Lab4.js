@@ -68,3 +68,23 @@ function fetchMultipleData(urls) {
 fetchMultipleData(["/api/user/1", "/api/user/2"]).then((users) =>
     console.log(users)
 );
+
+//Async/await
+//Ex1
+async function processOrder (orderId){
+    const order = await getOrder(orderId);
+    const user = await getUser(orderId);
+    const product = await getProducts(order.productIds);
+    return {order,user,product};
+}
+
+//Ex2
+async function safeApiCall(apiFunction, ...args) {
+    try {
+        const result = await apiFunction(...args);
+        return result;
+    } catch (error) {
+        console.error("API call failed:", error);
+        return null;
+    }
+}
