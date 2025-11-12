@@ -51,9 +51,20 @@ function delay(ms) {
     });
 }
 delay(2000).then(() => console.log("2 seconds passed"));
+
 //Ex2
 function fetchMultipleData(urls) {
-    // Your code here
-}
+    return Promise.all(
+        urls.map((url) =>
+            fetch(url).then((res) => {
+                if (!res.ok) {
+                    throw new Error(`Failed to fetch ${url}: ${res.status}`);
+                }
+                return res.json();
+            })
+        )
+    );
+  }
 fetchMultipleData(["/api/user/1", "/api/user/2"]).then((users) =>
-    console.log(users));
+    console.log(users)
+);
