@@ -3,16 +3,22 @@ function Header() {
       <nav className="my-2">
         <ul className="flex justify-around text-xl font-bold">
           <li>
-            <a href="/">Home</a>
+            <a href="/">Tour Quốc Tế</a>
           </li>
           <li>
-            <a href="/">About</a>
+            <a href="/">Tour Nội Địa</a>
           </li>
           <li>
-            <a href="/">Booking</a>
+            <a href="/">Dịch vụ tư Visa</a>
           </li>
           <li>
-            <a href="/">Contact</a>
+            <a href="/">Mice - Teambuilding</a>
+          </li>
+          <li>
+            <a href="/">Giới thiệu</a>
+          </li>
+          <li>
+            <a href="/">Tin tức</a>
           </li>
         </ul>
       </nav>
