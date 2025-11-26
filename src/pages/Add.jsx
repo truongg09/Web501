@@ -1,89 +1,122 @@
-function Add() {
+import { useEffect, useState } from "react";
+import axios from 'axios'
+function AddPage() {
+  
   return (
-    <div className="p-6">
+    <div className="p-10 w-180">
       <h1 className="text-2xl font-semibold mb-6">Thêm mới</h1>
 
-      <form className="space-y-6">
+      <form className="space-y-4">
         {/* Text input */}
         <div>
           <label htmlFor="text" className="block font-medium mb-1">
-            Text
+            Tên Tour
           </label>
           <input
             type="text"
-            id="text"
+            id="name"
+            className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="text" className="block font-medium mb-1">
+            Điểm đến
+          </label>
+          <input
+            type="text"
+            id="destination"
+            className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="text" className="block font-medium mb-1">
+            Thời gian Tour
+          </label>
+          <input
+            type="text"
+            id="duration"
+            className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="text" className="block font-medium mb-1">
+            Giá Tour
+          </label>
+          <input
+            type="text"
+            id="price"
+            className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="text" className="block font-medium mb-1">
+            Ảnh
+          </label>
+          <input
+            type="text"
+            id="image"
+            className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="text" className="block font-medium mb-1">
+            Mô tả
+          </label>
+          <input
+            type="text"
+            id="description"
+            className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="text" className="block font-medium mb-1">
+            Số lượng
+          </label>
+          <input
+            type="number"
+            id="available"
             className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         {/* Checkbox list */}
         <div>
-          <label className="block font-medium mb-1">Radio</label>
-
-          <div className="flex items-center space-x-2 mb-2">
-            <input
-              type="checkbox"
-              id="flexCheck1"
-              className="h-4 w-4 text-blue-600 rounded border-gray-300"
-            />
-            <label htmlFor="flexCheck1" className="text-gray-700">
-              checkbox 1
-            </label>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="flexCheck2"
-              className="h-4 w-4 text-blue-600 rounded border-gray-300"
-            />
-            <label htmlFor="flexCheck2" className="text-gray-700">
-              checkbox 2
-            </label>
-          </div>
-        </div>
-
-        {/* Radio list */}
-        <div>
-          <label className="block font-medium mb-1">Checkbox</label>
-
-          <div className="flex items-center space-x-2 mb-2">
-            <input
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadio1"
-              className="h-4 w-4 text-blue-600"
-            />
-            <label htmlFor="flexRadio1" className="text-gray-700">
-              Checkbox 1
-            </label>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <input
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadio2"
-              className="h-4 w-4 text-blue-600"
-            />
-            <label htmlFor="flexRadio2" className="text-gray-700">
-              Checkbox 2
-            </label>
+          <label className="block font-medium mb-1">Trạng thái</label>
+          <div className="flex space-x-2">
+            <div className="flex items-center space-x-1 mb-2">
+              <input
+                type="checkbox"
+                id="active"
+                className="h-4 w-4 text-blue-600 rounded border-gray-300"
+              />
+              <label htmlFor="flexCheck1" className="text-gray-700">
+                True
+              </label>
+            </div>
+            <div className="flex items-center space-x-1 mb-2">
+              <input
+                type="checkbox"
+                id="active"
+                className="h-4 w-4 text-blue-600 rounded border-gray-300"
+              />
+              <label htmlFor="flexCheck1" className="text-gray-700">
+                False
+              </label>
+            </div>
           </div>
         </div>
 
         {/* Select */}
         <div>
           <label htmlFor="selectOption" className="block font-medium mb-1">
-            Select - option
+            Danh mục
           </label>
           <select
-            id="selectOption"
+            id="category"
             className="w-full border rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="1">Tour nội địa</option>
+            <option value="2">Tour quốc tế</option>
           </select>
         </div>
 
@@ -99,4 +132,4 @@ function Add() {
   );
 }
 
-export default Add;
+export default AddPage;

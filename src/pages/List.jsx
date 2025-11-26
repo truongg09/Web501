@@ -1,14 +1,33 @@
 import { useEffect, useState } from "react";
+import axios from 'axios'
+import toast from "react-hot-toast";
 
-function List() {
+function ListPage() {
   const [tours, setTours] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/tours")
-      .then((res) => res.json())
-      .then((data) => setTours(data))
-      .catch((err) => console.log("Lỗi API:", err));
+    console.log('Chạy 1 lần khi mount')
+    const getTours = async () => {
+      try {
+        const { data } = await axios.get('http://localhost:3001/tours')
+        setTours(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getTours()
   }, []);
+
+  const deleteTour = async (id) => {
+    try{
+    if (!confirm("Bạn chắc chắn muốn xóa Tour này không?")) return;
+        await axios.delete(`http://localhost:3001/tours/${id}`);
+        setTours(tours.filter((tour) => tour.id !== id));
+        toast.success('Xóa thành công!')
+    } catch (error) {
+        toast.error(error);
+    }
+  };
 
   return (
     <div className="p-6">
@@ -20,10 +39,10 @@ function List() {
             <tr>
               <th className="px-4 py-2 border text-center">STT</th>
               <th className="px-4 py-2 border text-center">Tên Tour</th>
-              <th className="px-4 py-2 border text-center">Địa điểm</th>
+              <th className="px-4 py-2 border text-center">Điểm đến</th>
               <th className="px-4 py-2 border text-center">Thời gian Tour</th>
               <th className="px-4 py-2 border text-center">Giá</th>
-              <th className="px-4 py-2 border text-center">Thumbnail</th>
+              <th className="px-4 py-2 border text-center">Ảnh</th>
               <th className="px-4 py-2 border text-center">Mô tả</th>
               <th className="px-4 py-2 border text-center">Số lượng Tour</th>
               <th className="px-4 py-2 border text-center">Hành động</th>
@@ -49,8 +68,8 @@ function List() {
                 <td className="px-4 py-2 border">{tour.description}</td>
                 <td className="px-4 py-2 border">{tour.available}</td>
                 <td className="px-4 py-2 border text-center">
-                  <button className="px-3 py-1 bg-blue-500 text-white rounded ">Sửa</button>
-                  <button className="px-3 py-1 bg-red-500 text-white rounded">Xóa</button>
+                  <button className="px-3 py-1 bg-blue-500 text-white rounded">Sửa</button>
+                  <button className="px-3 py-1 bg-red-500 text-white rounded" onClick={() => deleteTour(tour.id)}>Xóa</button>
                 </td>
               </tr>
             ))}
@@ -60,5 +79,5 @@ function List() {
     </div>
   );
 }
+export default ListPage;
 
-export default List;
