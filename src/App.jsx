@@ -4,7 +4,6 @@ import ListPage from "./pages/List";
 import AddPage from "./pages/Add";
 import EditPage from "./pages/Edit";
 
-
 function App() {
   return (
     <>
@@ -39,9 +38,9 @@ function App() {
 
       {/* MAIN CONTENT */}
       <Routes>
-        <Route path ='/List' element={<ListPage/>}/>
-        <Route path ='/Add' element={<AddPage/>}/>
-        <Route path ='/Edit' element={<EditPage/>}/>
+        <Route path ='/list' element={<ListPage/>}/>
+        <Route path ='/add' element={<AddPage/>}/>
+        <Route path='/edit/:id' element={<EditPage />} />
       </Routes>
       <Toaster/>
     </>

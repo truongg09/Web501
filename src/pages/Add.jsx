@@ -1,7 +1,7 @@
-import { useState } from "react";
+import {useState} from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function AddPage() {
   const navigate = useNavigate();
@@ -14,8 +14,8 @@ function AddPage() {
     image: "",
     description: "",
     available: "",
-    active: true,
-    category: "1"
+    active: "",
+    category: "1",
   });
 
   const handleChange = (e) => {
@@ -47,7 +47,6 @@ function AddPage() {
       <h1 className="text-2xl font-semibold mb-6">Thêm mới</h1>
 
       <form className="space-y-4" onSubmit={handleSubmit}>
-        
         <div>
           <label className="block font-medium mb-1">Tên Tour</label>
           <input
@@ -127,15 +126,30 @@ function AddPage() {
 
         <div>
           <label className="block font-medium mb-1">Trạng thái</label>
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              name="active"
-              checked={form.active}
-              onChange={handleChange}
-              className="h-4 w-4"
-            />
-            <span>{form.active ? "Hoạt động" : "Không hoạt động"}</span>
+          <div className="flex items-center space-x-4">
+            {/* Hoạt động */}
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                name="active"
+                checked={form.active === "active"}
+                onChange={() => setForm({ ...form, active: "active" })}
+                className="h-4 w-4"
+              />
+              <span>Hoạt động</span>
+            </label>
+
+            {/* Không hoạt động */}
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                name="active"
+                checked={form.active === "inactive"}
+                onChange={() => setForm({ ...form, active: "inactive" })}
+                className="h-4 w-4"
+              />
+              <span>Không hoạt động</span>
+            </label>
           </div>
         </div>
 
