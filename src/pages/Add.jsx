@@ -30,13 +30,6 @@ function AddPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // validate
-    if (!form.name || !form.destination || !form.price) {
-      toast.error("Vui lòng nhập đủ thông tin!");
-      return;
-    }
-
     try {
       await axios.post("http://localhost:3001/tours", {
         ...form,
