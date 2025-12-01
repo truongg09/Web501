@@ -8,7 +8,8 @@
       "price": 2500000,
       "image": "https://picsum.photos/400/300?random=1",
       "description": "Khám phá Sapa với những ruộng bậc thang tuyệt đẹp",
-      "available": 15
+      "available": 15,
+      "active": "active"
     },
     {
       "id": 2,
@@ -18,7 +19,8 @@
       "price": 1800000,
       "image": "https://picsum.photos/400/300?random=2",
       "description": "Du thuyền vịnh Hạ Long - Kỳ quan thiên nhiên thế giới",
-      "available": 20
+      "available": 20,
+      "active": "active"
     },
     {
       "name": "Đà Lạt 4N3D",
@@ -28,7 +30,7 @@
       "image": "https://picsum.photos/400/300?random=3&quot",
       "description": "Thành phố ngàn hoa với khí hậu mát mẻ quanh năm",
       "available": 10,
-      "active": true,
+      "active": "active",
       "category": "1",
       "id": 4
     }

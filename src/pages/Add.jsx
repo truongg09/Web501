@@ -127,7 +127,6 @@ function AddPage() {
         <div>
           <label className="block font-medium mb-1">Trạng thái</label>
           <div className="flex items-center space-x-4">
-            {/* Hoạt động */}
             <label className="flex items-center space-x-2">
               <input
                 type="checkbox"
@@ -139,7 +138,6 @@ function AddPage() {
               <span>Hoạt động</span>
             </label>
 
-            {/* Không hoạt động */}
             <label className="flex items-center space-x-2">
               <input
                 type="checkbox"

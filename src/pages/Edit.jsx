@@ -136,6 +136,46 @@ function EditPage() {
           />
         </div>
 
+        <div>
+          <label className="block font-medium mb-1">Trạng thái</label>
+          <div className="flex items-center space-x-4">
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                name="active"
+                checked={form.active === "active"}
+                onChange={() => setForm({ ...form, active: "active" })}
+                className="h-4 w-4"
+              />
+              <span>Hoạt động</span>
+            </label>
+
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                name="active"
+                checked={form.active === "inactive"}
+                onChange={() => setForm({ ...form, active: "inactive" })}
+                className="h-4 w-4"
+              />
+              <span>Không hoạt động</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label className="block font-medium mb-1">Danh mục</label>
+          <select
+            name="category"
+            value={form.category}
+            onChange={handleChange}
+            className="w-full border rounded-lg px-3 py-2"
+          >
+            <option value="1">Tour nội địa</option>
+            <option value="2">Tour quốc tế</option>
+          </select>
+        </div>
+
         <button
           type="submit"
           className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
