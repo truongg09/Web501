@@ -30,7 +30,7 @@ function AddPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/tours", {
+      await axios.post("http://localhost:3000/tours", {
         ...form,
         price: Number(form.price),
         available: Number(form.available),

@@ -1,10 +1,20 @@
 import { Toaster } from "react-hot-toast";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import ListPage from "./pages/List";
 import AddPage from "./pages/Add";
 import EditPage from "./pages/Edit";
+import RegisterPage from "./pages/Register";
+import LoginPage from "./pages/Login";
 
 function App() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <>
       <nav className="bg-blue-600 text-white shadow">
@@ -14,35 +24,45 @@ function App() {
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/Edit" className="hover:text-gray-200">
+            <Link to="/edit/1" className="hover:text-gray-200">
               Trang chủ
             </Link>
-            <Link to="/List" className="hover:text-gray-200">
+            <Link to="/list" className="hover:text-gray-200">
               Danh sách
             </Link>
-            <Link to="/Add" className="hover:text-gray-200">
+            <Link to="/add" className="hover:text-gray-200">
               Thêm mới
             </Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
-            <Link to="#" className="hover:text-gray-200">
+            <Link to="/login" className="hover:text-gray-200">
               Đăng nhập
             </Link>
-            <Link to="#" className="hover:text-gray-200">
+            <Link to="/register" className="hover:text-gray-200">
               Đăng ký
             </Link>
+
+            <button 
+              onClick={handleLogout}
+              className="px-3 py-1 text-white rounded hover:text-gray-200"
+            >
+              Đăng xuất
+            </button>
           </div>
         </div>
       </nav>
 
       {/* MAIN CONTENT */}
       <Routes>
-        <Route path ='/list' element={<ListPage/>}/>
-        <Route path ='/add' element={<AddPage/>}/>
-        <Route path='/edit/:id' element={<EditPage />} />
+        <Route path="/list" element={<ListPage />} />
+        <Route path="/add" element={<AddPage />} />
+        <Route path="/edit/:id" element={<EditPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
-      <Toaster/>
+
+      <Toaster />
     </>
   );
 }

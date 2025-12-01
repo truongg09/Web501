@@ -20,7 +20,7 @@ function EditPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/tours/${id}`);
+        const res = await axios.get(`http://localhost:3000/tours/${id}`);
         setForm(res.data);
       } catch (error) {
         toast.error(error.message);
@@ -41,7 +41,7 @@ function EditPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3001/tours/${id}`, {
+      await axios.put(`http://localhost:3000/tours/${id}`, {
         ...form,
         price: Number(form.price),
         available: Number(form.available),

@@ -2,15 +2,24 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function ListPage() {
+  const navigate = useNavigate();
   const [tours, setTours] = useState([]);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Bạn chưa đăng nhập!");
+      navigate("/login");
+    }
+  }, []);
 
   useEffect(() => {
     console.log('Chạy 1 lần khi mount')
     const getTours = async () => {
       try {
-        const { data } = await axios.get('http://localhost:3001/tours')
+        const { data } = await axios.get('http://localhost:3000/tours')
         setTours(data)
       } catch (error) {
         console.log(error)
@@ -67,7 +76,7 @@ function ListPage() {
                   />
                 </td>
                 <td className="px-4 py-2 border">{tour.description}</td>
-                <td className="px-4 py-2 border">{tour.available}</td>
+                <td className="px-4 py-2 border text-center">{tour.available}</td>
                 <td className="px-4 py-2 border text-center">
                 <Link 
                 to={`/edit/${tour.id}`}
@@ -83,6 +92,7 @@ function ListPage() {
       </div>
     </div>
   );
+  
 }
 export default ListPage;
 
