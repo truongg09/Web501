@@ -5,13 +5,14 @@ import AddPage from "./pages/Add";
 import EditPage from "./pages/Edit";
 import RegisterPage from "./pages/Register";
 import LoginPage from "./pages/Login";
+import AdminLayout from './layouts/AdminLayout'
 
 function App() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    toast.success("Bạn chưa đăng nhập");
     navigate("/login");
   };
 
@@ -54,7 +55,7 @@ function App() {
       </nav>
 
       {/* MAIN CONTENT */}
-      <Routes>
+      <Routes element={<AdminLayout />}>
         <Route path="/list" element={<ListPage />} />
         <Route path="/add" element={<AddPage />} />
         <Route path="/edit/:id" element={<EditPage />} />

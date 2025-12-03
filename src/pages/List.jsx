@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from 'axios'
+import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ListPage() {
   const navigate = useNavigate();
@@ -16,26 +16,43 @@ function ListPage() {
   }, []);
 
   useEffect(() => {
-    console.log('Chạy 1 lần khi mount')
+    console.log("Chạy 1 lần khi mount");
     const getTours = async () => {
       try {
-        const { data } = await axios.get('http://localhost:3000/tours')
-        setTours(data)
+        const { data } = await axios.get("http://localhost:3000/tours");
+        setTours(data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    getTours()
+    };
+    getTours();
   }, []);
 
   const deleteTour = async (id) => {
-    try{
-    if (!confirm("Bạn chắc chắn muốn xóa Tour này không?")) return;
-        await axios.delete(`http://localhost:3001/tours/${id}`);
-        setTours(tours.filter((tour) => tour.id !== id));
-        toast.success('Xóa thành công!')
+    try {
+      if (!confirm("Bạn chắc chắn muốn xóa Tour này không?")) return;
+      await axios.delete(`http://localhost:3001/tours/${id}`);
+      setTours(tours.filter((tour) => tour.id !== id));
+      toast.success("Xóa thành công!");
     } catch (error) {
-        toast.error(error);
+      toast.error(error);
+    }
+  };
+
+  const toggleActive = async (id, currentActive) => {
+    try {
+      await axios.patch(`http://localhost:3000/tours/${id}`, {
+        active: !currentActive,
+      });
+
+      setTours(
+        tours.map((t) => (t.id === id ? { ...t, active: !currentActive } : t))
+      );
+
+      toast.success("Cập nhật trạng thái thành công!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Lỗi cập nhật trạng thái!");
     }
   };
 
@@ -55,6 +72,7 @@ function ListPage() {
               <th className="px-4 py-2 border text-center">Ảnh</th>
               <th className="px-4 py-2 border text-center">Mô tả</th>
               <th className="px-4 py-2 border text-center">Số lượng Tour</th>
+              <th className="px-4 py-2 border text-center">Trạng thái</th>
               <th className="px-4 py-2 border text-center">Hành động</th>
             </tr>
           </thead>
@@ -70,20 +88,32 @@ function ListPage() {
                   {tour.price.toLocaleString()} đ
                 </td>
                 <td className="px-4 py-2 border">
-                  <img
-                    src={tour.image}
-                    className="w-20 h-14"
-                  />
+                  <img src={tour.image} className="w-20 h-14" />
                 </td>
                 <td className="px-4 py-2 border">{tour.description}</td>
-                <td className="px-4 py-2 border text-center">{tour.available}</td>
                 <td className="px-4 py-2 border text-center">
-                <Link 
-                to={`/edit/${tour.id}`}
-                className="px-3 py-1 bg-blue-500 text-white rounded inline-block">
-                  Sửa
-                </Link>
-                  <button className="px-3 py-1 bg-red-500 text-white rounded" onClick={() => deleteTour(tour.id)}>Xóa</button>
+                  {tour.available}
+                </td>
+                <td className="px-4 py-2 border text-center">
+                  <div
+                    onClick={() => toggleActive(tour.id, tour.active)}
+                    className={`w-9 h-6 rounded-full cursor-pointer
+                    ${tour.active ? "bg-green-500" : "bg-gray-400"}`}>
+                  </div>
+                </td>
+                <td className="px-4 py-2 border text-center">
+                  <Link
+                    to={`/edit/${tour.id}`}
+                    className="px-3 py-1 bg-blue-500 text-white rounded inline-block"
+                  >
+                    Sửa
+                  </Link>
+                  <button
+                    className="px-3 py-1 bg-red-500 text-white rounded"
+                    onClick={() => deleteTour(tour.id)}
+                  >
+                    Xóa
+                  </button>
                 </td>
               </tr>
             ))}
@@ -92,7 +122,5 @@ function ListPage() {
       </div>
     </div>
   );
-  
 }
 export default ListPage;
-

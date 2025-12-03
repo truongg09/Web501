@@ -4,38 +4,24 @@ import axios from "axios";
 import toast from "react-hot-toast";
 function LoginPage() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // handleChange
+  const handleSubmit = async event => {
+    event.preventDefault()
     try {
-      const res = await axios.get(
-        `http://localhost:3000/users?email=${form.email}&password=${form.password}`
-      );
-
-      if (res.data.length > 0) {
-        localStorage.setItem("token", JSON.stringify(res.data[0]));
-        toast.success("Đăng nhập thành công!");
-        navigate("/list");
-      } else {
-        toast.error("Sai email hoặc mật khẩu!");
-      }
+      const { data } = await axios.post('http://localhost:3000/login', {
+        email,
+        password,
+      })
+      toast.success('Đăng nhập thành thành công!')
+      localStorage.setItem('token', data.accessToken)
+      navigate('/list');
     } catch (error) {
-      toast.error("Lỗi kết nối server!");
+      toast.error(error.message)
     }
-  };
+  }
 
   return (
     <div className="p-10 w-180">
@@ -47,8 +33,8 @@ function LoginPage() {
           <input
             type="email"
             name="email"
-            value={form.email}
-            onChange={handleChange}
+            value={email}
+            onChange={event => setEmail(event.target.value)}
             className="w-full border rounded-lg px-3 py-2"
           />
         </div>
@@ -58,8 +44,8 @@ function LoginPage() {
           <input
             type="password"
             name="password"
-            value={form.password}
-            onChange={handleChange}
+            value={password}
+            onChange={event => setPassword(event.target.value)}
             className="w-full border rounded-lg px-3 py-2"
           />
         </div>

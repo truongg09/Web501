@@ -9,7 +9,7 @@
       "image": "https://picsum.photos/400/300?random=1",
       "description": "Khám phá Sapa với những ruộng bậc thang tuyệt đẹp",
       "available": 15,
-      "active": "active"
+      "active": true
     },
     {
       "id": 2,
@@ -20,7 +20,7 @@
       "image": "https://picsum.photos/400/300?random=2",
       "description": "Du thuyền vịnh Hạ Long - Kỳ quan thiên nhiên thế giới",
       "available": 20,
-      "active": "active"
+      "active": true
     },
     {
       "name": "Đà Lạt 4N3D",
@@ -30,7 +30,7 @@
       "image": "https://picsum.photos/400/300?random=3&quot",
       "description": "Thành phố ngàn hoa với khí hậu mát mẻ quanh năm",
       "available": 10,
-      "active": "active",
+      "active": true,
       "category": "1",
       "id": 4
     }
@@ -38,7 +38,7 @@
   "users": [
     {
       "email": "truong@gmail.com",
-      "password": "123123",
+      "password": "$2a$10$212MH3Za/qcUt1IEH9nxeeM8QaWOP/.seNclmsAhlyK40c3jquy2C",
       "id": 1
     }
   ]
