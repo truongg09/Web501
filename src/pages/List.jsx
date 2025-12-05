@@ -39,7 +39,7 @@ function ListPage() {
     }
   };
 
-  const toggleActive = async (id, currentActive) => {
+  const switchAc = async (id, currentActive) => {
     try {
       await axios.patch(`http://localhost:3000/tours/${id}`, {
         active: !currentActive,
@@ -97,7 +97,7 @@ function ListPage() {
                 <td className="px-4 py-2 border text-center">
                   <div className="flex justify-end pr-3">
                     <div
-                      onClick={() => toggleActive(tour.id, tour.active)}
+                      onClick={() => switchAc(tour.id, tour.active)}
                       className={`w-9 h-6 rounded-full cursor-pointer ${
                         tour.active ? "bg-green-500" : "bg-gray-400"
                       }`}>
