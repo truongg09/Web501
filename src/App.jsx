@@ -12,7 +12,6 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    toast.success("Bạn chưa đăng nhập");
     navigate("/login");
   };
 

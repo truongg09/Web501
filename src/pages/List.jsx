@@ -95,10 +95,13 @@ function ListPage() {
                   {tour.available}
                 </td>
                 <td className="px-4 py-2 border text-center">
-                  <div
-                    onClick={() => toggleActive(tour.id, tour.active)}
-                    className={`w-9 h-6 rounded-full cursor-pointer
-                    ${tour.active ? "bg-green-500" : "bg-gray-400"}`}>
+                  <div className="flex justify-end pr-3">
+                    <div
+                      onClick={() => toggleActive(tour.id, tour.active)}
+                      className={`w-9 h-6 rounded-full cursor-pointer ${
+                        tour.active ? "bg-green-500" : "bg-gray-400"
+                      }`}>
+                    </div>
                   </div>
                 </td>
                 <td className="px-4 py-2 border text-center">

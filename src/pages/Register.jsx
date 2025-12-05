@@ -2,14 +2,25 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+
 function RegisterPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  // handleChange
   const handleSubmit = async event => {
     event.preventDefault()
+
+    if (!email.trim()) {
+      toast.error("Email không được để trống")
+      return
+    }
+
+    if (!password.trim()) {
+      toast.error("Mật khẩu không được để trống")
+      return
+    }
+
     try {
       await axios.post('http://localhost:3000/register', {
         email,
