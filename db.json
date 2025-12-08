@@ -1,0 +1,27 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Trần Phú Ngu",
+      "email": "ngutp@gmail.com",
+      "phone": "0987654321",
+      "age": "19",
+      "major": "Web Back-End"
+    },
+    {
+      "name": "Ngô Quang Trường",
+      "email": "truongconn09@gmail.com",
+      "phone": "0984063104",
+      "age": "21",
+      "major": "Lập trình Web",
+      "id": 2
+    }
+  ],
+  "users": [
+    {
+      "email": "truongconn09@gmail.com",
+      "password": "$2a$10$nEBUQtG8kD3AkbzGwYMwJOFrk4Pd5JkHwWAifDADfMhWulXL9tNn2",
+      "id": 1
+    }
+  ]
+}
